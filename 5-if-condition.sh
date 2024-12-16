@@ -8,4 +8,4 @@ then
 echo "error: please get root user previlage"
 exit 1
 fi
-yum install git -y
+yum install mysql -y
