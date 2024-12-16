@@ -8,4 +8,4 @@ then
 echo "error: please get root user previlage"
 
 fi
-#yum install git -y
+yum install git -y
