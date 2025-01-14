@@ -1,5 +1,9 @@
 #!/bin/bash
 
+DATE=$(date +%F)
+LOGDIR=/home/centos/sellscript-logs
+SCRIPT_NAME=$0
+LOGFILE=$LOGDIR/$0-$DATE.log
 USERID=$(id -u)
 R="\e[31m"
 N="\e[0m"
@@ -13,7 +17,14 @@ fi
 
 for i in $@
 do
-yum install $i -y
+yum list installed $i &>>$LOGFILE
+if [ $? -ne 0 ]
+then
+echo "$i is not installed , lets install it"
+yum install $i -y &>>$LOGFILE
+else
+echo -e "$Y $i is already installed $N"
+fi
 done
 
 
